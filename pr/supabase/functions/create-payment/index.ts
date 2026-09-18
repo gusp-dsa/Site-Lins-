@@ -13,6 +13,8 @@ Deno.serve(async (request) => {
     const { courseSlug } = await request.json();
     const { data: course, error: courseError } = await supabase.from('courses').select('id,title,price_cents').eq('slug', courseSlug).eq('is_published', true).single();
     if (courseError || !course) throw new Error('Curso não encontrado.');
+    const { data: existing } = await supabase.from('enrollments').select('id,status').eq('user_id', user.id).eq('course_id', course.id).maybeSingle();
+    if (existing?.status === 'active') throw new Error('Você já possui acesso a este curso.');
 
     const accessToken = Deno.env.get('MERCADO_PAGO_ACCESS_TOKEN');
     const siteUrl = Deno.env.get('SITE_URL');
@@ -29,7 +31,6 @@ Deno.serve(async (request) => {
     });
     const result = await preference.json();
     if (!preference.ok) throw new Error(result.message ?? 'Não foi possível iniciar o pagamento.');
-    const { data: existing } = await supabase.from('enrollments').select('id,status').eq('user_id', user.id).eq('course_id', course.id).maybeSingle();
     if (!existing) await supabase.from('enrollments').insert({ user_id: user.id, course_id: course.id, status: 'pending', payment_provider: 'mercado_pago', payment_reference: String(result.id) });
     return Response.json({ checkoutUrl: result.init_point }, { headers: cors });
   } catch (error) { return Response.json({ error: error.message }, { status: 400, headers: cors }); }

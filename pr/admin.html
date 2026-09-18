@@ -1,1 +1,53 @@
-<!doctype html><html lang="pt-BR"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>Painel do Jonas</title><link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;600;700;800&family=Playfair+Display:ital,wght@0,600&display=swap" rel="stylesheet"><link rel="stylesheet" href="curso.css"></head><body class="admin-body"><aside class="admin-sidebar"><a class="logo" href="index.html"><span>JL</span> JONAS LINS</a><p class="admin-label">PAINEL DO PROFESSOR</p><nav class="admin-nav"><a class="active" href="#visao">Visão geral</a><a href="#agenda">Agenda</a><a href="#alunos">Alunos</a><a href="#modulos">Conteúdo</a></nav><button id="admin-logout">Sair da conta</button></aside><main class="admin-main"><header class="admin-header"><div><p class="eyebrow">ÁREA PRIVADA</p><h1>Olá, <em>Jonas.</em></h1></div><p id="admin-status">Carregando dados...</p></header><section id="visao" class="stats"><article><span>ALUNOS ATIVOS</span><b id="stat-students">—</b><small>com acesso ao curso</small></article><article><span>VENDAS APROVADAS</span><b id="stat-sales">—</b><small>no total</small></article><article><span>AGENDAMENTOS</span><b id="stat-bookings">—</b><small>pendentes de confirmação</small></article><article><span>RECEITA</span><b id="stat-revenue">—</b><small>vendas confirmadas</small></article></section><section id="agenda" class="admin-section"><div class="section-line"><div><p class="eyebrow">PRÓXIMAS AULAS</p><h2>Agenda</h2></div><span class="legend"><i></i> aguardando confirmação</span></div><div class="admin-table-wrap"><table><thead><tr><th>Aluno</th><th>Instrumento</th><th>Data e hora</th><th>Status</th><th></th></tr></thead><tbody id="bookings-table"><tr><td colspan="5">Carregando agenda...</td></tr></tbody></table></div></section><section id="alunos" class="admin-section"><div class="section-line"><div><p class="eyebrow">CURSO ONLINE</p><h2>Alunos</h2></div><span id="student-count">— alunos</span></div><div class="admin-table-wrap"><table><thead><tr><th>Aluno</th><th>Curso</th><th>Acesso</th><th>Desde</th></tr></thead><tbody id="students-table"><tr><td colspan="4">Carregando alunos...</td></tr></tbody></table></div></section><section id="modulos" class="admin-section"><div class="section-line"><div><p class="eyebrow">GUITARRA ESSENCIAL</p><h2>Conteúdo</h2></div><button class="admin-button" id="new-module">+ Novo módulo</button></div><div class="content-grid" id="modules-grid"></div></section></main><script src="course-config.js"></script><script type="module" src="admin.js"></script></body></html>
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>Painel do Jonas</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;600;700;800&family=Playfair+Display:ital,wght@0,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="curso.css">
+</head>
+<body class="admin-body">
+  <aside class="admin-sidebar">
+    <a class="logo" href="index.html"><span>JL</span> JONAS LINS</a>
+    <p class="admin-label">PAINEL DO PROFESSOR</p>
+    <nav class="admin-nav"><a class="active" href="#visao">Visão geral</a><a href="#agenda">Agenda</a><a href="#alunos">Alunos</a><a href="#modulos">Conteúdo</a></nav>
+    <button id="admin-logout">Sair da conta</button>
+  </aside>
+  <main class="admin-main">
+    <header class="admin-header"><div><p class="eyebrow">ÁREA PRIVADA</p><h1>Olá, <em>Jonas.</em></h1></div><p id="admin-status">Carregando dados...</p></header>
+    <section id="visao" class="stats">
+      <article><span>ALUNOS ATIVOS</span><b id="stat-students">—</b><small>com acesso ao curso</small></article>
+      <article><span>VENDAS APROVADAS</span><b id="stat-sales">—</b><small>no total</small></article>
+      <article><span>AGENDAMENTOS</span><b id="stat-bookings">—</b><small>pendentes de confirmação</small></article>
+      <article><span>RECEITA</span><b id="stat-revenue">—</b><small>vendas confirmadas</small></article>
+    </section>
+    <section id="agenda" class="admin-section">
+      <div class="section-line"><div><p class="eyebrow">PRÓXIMAS AULAS</p><h2>Agenda</h2></div><span class="legend"><i></i> aguardando confirmação</span></div>
+      <div class="admin-table-wrap"><table><thead><tr><th>Aluno</th><th>Instrumento</th><th>Data e hora</th><th>Status</th><th></th></tr></thead><tbody id="bookings-table"><tr><td colspan="5">Carregando agenda...</td></tr></tbody></table></div>
+    </section>
+    <section id="alunos" class="admin-section">
+      <div class="section-line"><div><p class="eyebrow">CURSO ONLINE</p><h2>Alunos</h2></div><span id="student-count">— alunos</span></div>
+      <div class="admin-table-wrap"><table><thead><tr><th>Aluno</th><th>Curso</th><th>Acesso</th><th>Desde</th></tr></thead><tbody id="students-table"><tr><td colspan="4">Carregando alunos...</td></tr></tbody></table></div>
+    </section>
+    <section id="modulos" class="admin-section">
+      <div class="section-line"><div><p class="eyebrow">GUITARRA ESSENCIAL</p><h2>Conteúdo</h2></div><button class="admin-button" id="new-module">+ Novo módulo</button></div>
+      <div class="content-grid" id="modules-grid"></div>
+    </section>
+  </main>
+  <dialog id="module-dialog" class="module-dialog">
+    <button type="button" class="close" id="cancel-module" aria-label="Fechar">×</button>
+    <form id="module-form">
+      <p class="eyebrow">NOVO CONTEÚDO</p><h2>Criar módulo</h2>
+      <label>Posição<input id="module-position" name="position" type="number" min="1" required></label>
+      <label>Título<input name="title" required></label>
+      <label>Descrição<textarea name="description" rows="4"></textarea></label>
+      <label>Arquivo de vídeo protegido<input name="video_file" type="file" accept="video/*"></label>
+      <label>Ou URL externa<input name="video_url" type="url" placeholder="https://..."></label>
+      <label class="module-check"><input name="is_published" type="checkbox" checked> Publicar agora</label>
+      <button type="submit" class="primary full">Salvar módulo</button>
+    </form>
+  </dialog>
+  <script src="course-config.js"></script><script type="module" src="admin.js"></script>
+</body>
+</html>
